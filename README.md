@@ -1,2 +1,2 @@
 # clockofclock
-Hey there, we will create a clock made of tiny clocks
+Dosto hum ek chota sa projekt banayenge jisme hum choti clocks se ek badi clock banaeege
