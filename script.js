@@ -1,18 +1,16 @@
 const template = document.getElementById('clock-template');
 const digitContainers = [];
 
-// 1. Initialize 6 digit boxes (HH:MM:SS)
+
 for (let d = 0; d < 6; d++) {
     const container = document.getElementById(`digit-${d}`);
     digitContainers.push(container);
     
-    // Populate each digit with 24 clocks
     for (let i = 0; i < 24; i++) {
         container.appendChild(template.content.cloneNode(true));
     }
 }
 
-// 2. Mapping symbols from your images
 const angles = {
     "┌": [0, 90],
     "┐": [90, 180],
@@ -23,7 +21,6 @@ const angles = {
     " ": [135, 135]
 };
 
-// 3. Digit layout definitions
 const SHAPES = {
     "4": ["┌","┐","┌","┐","|","|","|","|","|","└","┘","|","└","-","┐","|"," "," ","|","|"," "," ","└","┘"],
     "0": ["┌","-","-","┐","|","┌","┐","|","|","|","|","|","|","|","|","|","|","└","┘","|","└","-","-","┘"],
@@ -37,9 +34,7 @@ const SHAPES = {
     "9": ["┌","-","-","┐","|","┌","┐","|","|","└","┘","|","└","-","┐","|","┌","-","┘","|","└","-","-","┘"]
 };
 
-/**
- * Updates a digit container to display a specific number
- */
+
 function updateDigit(container, num) {
     const clocks = container.querySelectorAll('.clock');
     const shape = SHAPES[num] || SHAPES["0"];
@@ -52,18 +47,15 @@ function updateDigit(container, num) {
     });
 }
 
-/**
- * Main clock logic based on image: replace(/\D/g, "").split("")
- */
+
 function tick() {
     const time = new Date().toLocaleTimeString("en-US", {
-        hour12: true, // As seen in your image "10:08:14 AM"
+        hour12: true, 
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit"
     });
 
-    // Extract exactly 6 digits: "10:08:14 AM" -> ["1", "0", "0", "8", "1", "4"]
     const digits = time.replace(/\D/g, "").slice(0, 6).split("");
 
     digits.forEach((num, i) => {
@@ -71,6 +63,5 @@ function tick() {
     });
 }
 
-// Initial update and interval
 tick();
 setInterval(tick, 1000);
